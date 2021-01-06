@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-toolbar>
+
+
+        <ion-buttons slot="start">
+            <ion-back-button color="tertiary" defaultHref="/">Atras</ion-back-button>
+        </ion-buttons>
+
+        <ion-title>{{insertItem.title}}</ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list>
+        <ion-item>
+            <ion-label position="floating">Nombre de la tarea</ion-label>
+            <!-- [(ngModel)]="itemName" se usa para obtener el nombre ingresado en una variable 
+            y luego se usa esa esa variable en la funcion addItemToList() -->
+            <ion-input type="text" [(ngModel)]="itemName" (keyup.enter)="addItemToList()"></ion-input>
+        </ion-item>
+
+        <ion-list-header *ngIf="insertItem.items.length > 0">
+            <ion-label>Tareas por hacer</ion-label>
+        </ion-list-header>
+
+    </ion-list>
+
+
+
+
+    <ion-item-sliding *ngFor="let item of insertItem.items;
+    let i = index" class="animated fadeInDown">
+        <!-- el [(ngModel)]="item.completed" escucha y emite informacion sobre
+        esa variable del completed (modifica el valor en el arreglo automaticamente)
+
+        el (ionChange)="changeCheckStatus( item )" cuando cambia el checkbox
+        ejecuta la funcion changeCheckStatus y le envia el item que se esta
+        mostrando del ngFor -->
+        <ion-item>
+            <ion-checkbox slot="start" [(ngModel)]="item.completed"
+            (ionChange)="changeCheckStatus( item )">
+            </ion-checkbox>
+            <ion-label>{{item.description}}</ion-label>
+        </ion-item>
+
+        <ion-item-options side="end">
+            <ion-item-option (click)="delete(i)" color="danger">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+  
+
+    </ion-item-sliding>
+
+
+
+
+
+
+</ion-content>
