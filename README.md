@@ -2,7 +2,7 @@
 
 Ejecutar app `ionic serve`
 
-## Característica
+## Características
 - Crear lista
 - Deslizar para borrar o editar lista
 - Abrir lista
